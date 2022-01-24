@@ -1,6 +1,6 @@
 <template>
   <li>
-    <h2>{{ name }} {{ isFavorite === '1' ? '(Favorite)' : '' }}</h2>
+    <h2>{{ name }} {{ isFavorite ? '(Favorite)' : '' }}</h2>
     <button @click="toggleFavorite">Toogle Favorite</button>
     <button @click="toggleDetails">
       {{ detailsVisible ? 'Hide' : 'Show' }} Details
@@ -14,20 +14,6 @@
 </template>
 
 <script>
-/**
- * favorite values convertion
- * @constant
- * @type {Object}
- */
-const CONVERTION = { '0': '1', '1': '0', };
-
-/**
- * is favorite values
- * @constant
- * @type {String[]}
- */
-const IS_FAVORITE_VALUES = ['0', '1'];
-
 export default {
   props: {
     name: {
@@ -43,13 +29,11 @@ export default {
       required: true,
     },
     favorite: {
-      type: String,
+      type: Boolean,
       required: false,
-      default: '0',
-      validator: (value) => IS_FAVORITE_VALUES.includes(value),
+      default: false,
     },
   },
-  // props: ['name', 'phone', 'email', 'favorite'],
   data() {
     return {
       detailsVisible: false,
@@ -61,7 +45,7 @@ export default {
       this.detailsVisible = !this.detailsVisible;
     },
     toggleFavorite() {
-      this.isFavorite = CONVERTION[this.isFavorite];
+      this.isFavorite = !this.isFavorite;
     },
   },
 };

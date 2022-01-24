@@ -6,24 +6,39 @@
 
     <ul>
       <friend-contact
-        name="Daniela Villada"
-        phone="0123 456 789"
-        email="ela@localhost.com"
-        favorite="1"
-      />
-      <friend-contact
-        name="Juan Marin"
-        phone="987 456 0123"
-        email="pendejo@localhost.com"
+        v-for="friend in friends"
+        :key="friend.id"
+        :name="friend.name"
+        :phone="friend.phone"
+        :email="friend.email"
+        :favorite="friend.favorite"
       />
     </ul>
   </section>
 </template>
 
 <script>
+import FriendContact from './components/FriendContact.vue';
 export default {
+  components: { FriendContact },
   data() {
-    return {};
+    return {
+      friends: [
+        {
+          id: 'daniela',
+          name: 'Daniela Villada',
+          phone: '0123 456 789',
+          email: 'ela@localhost.com',
+          favorite: true,
+        },
+        {
+          id: 'marin',
+          name: 'Juan Marin',
+          phone: '987 456 0123',
+          email: 'pendejo@localhost.com',
+        },
+      ],
+    };
   },
 };
 </script>
