@@ -10,6 +10,7 @@
       <li><strong>Phone:</strong> {{ phone }}</li>
       <li><strong>Email:</strong> {{ email }}</li>
     </ul>
+    <button @click="deleteFriend">Delete</button>
   </li>
 </template>
 
@@ -38,7 +39,7 @@ export default {
       default: false,
     },
   },
-  emits: ['toggle-favorite'],
+  emits: ['toggle-favorite', 'delete'],
   // emits: {
   //   'toggle-favorite': function (id) {
   //     if (id) {
@@ -53,6 +54,9 @@ export default {
     return { detailsVisible: false };
   },
   methods: {
+    deleteFriend() {
+      this.$emit('delete', this.id);
+    },
     toggleDetails() {
       this.detailsVisible = !this.detailsVisible;
     },

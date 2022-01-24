@@ -8,7 +8,9 @@
       <new-friend @add-friend="addFriend" />
     </section>
 
-    <ul>
+    <p v-if="friends.length === 0"><strong> Add some friends! </strong></p>
+
+    <ul v-else>
       <friend-contact
         v-for="friend in friends"
         :key="friend.id"
@@ -18,6 +20,7 @@
         :email="friend.email"
         :favorite="friend.favorite"
         @toggle-favorite="toggleFavorite"
+        @delete="deleteFriend"
       />
     </ul>
   </section>
@@ -59,6 +62,9 @@ export default {
 
       identifiedFriend.favorite = !identifiedFriend.favorite;
     },
+    deleteFriend(friendId) {
+      this.friends = this.friends.filter((friend) => friend.id !== friendId);
+    },
   },
 };
 </script>
@@ -92,6 +98,16 @@ header {
 
 button {
   margin: 0 6px;
+}
+
+p {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  margin: 3rem auto;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  width: 90%;
+  max-width: 40rem;
 }
 
 #app ul {
