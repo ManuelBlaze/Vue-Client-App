@@ -9,6 +9,7 @@
         name="Daniela Villada"
         phone="0123 456 789"
         email="ela@localhost.com"
+        favorite="1"
       />
       <friend-contact
         name="Juan Marin"
@@ -52,6 +53,10 @@ header {
   text-align: center;
   width: 90%;
   max-width: 40rem;
+}
+
+button {
+  margin: 0 6px;
 }
 
 #app ul {
